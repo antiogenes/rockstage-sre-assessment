@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wp-client03-pv
+spec:
+  capacity:
+    storage: 30Gi
+  accessModes:
+  -  ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /home/antiogenes/rock/volumes/wp/client03
+    server: 192.168.99.20
+    readOnly: false

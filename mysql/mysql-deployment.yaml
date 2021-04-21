@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-mysql
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: mysql
+    spec:
+      containers:
+      - image: mysql:8.0
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-root-pass
+              key: passwordmysqlroot
+        - name: PASS_DB_CLIENT01
+          valueFrom:
+            secretKeyRef:
+              name: mysql-client01-pass
+              key: passwordclient01    
+        - name: PASS_DB_CLIENT02
+          valueFrom:
+            secretKeyRef:
+              name: mysql-client02-pass
+              key: passwordclient02
+        - name: PASS_DB_CLIENT03
+          valueFrom:
+            secretKeyRef:
+              name: mysql-client03-pass
+              key: passwordclient03
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-volume
+          mountPath: /var/lib/mysql
+        - name: mysql-configmap
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: mysql-persistent-volume
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+      - name: mysql-configmap
+        configMap:
+          name: mysql-configmap

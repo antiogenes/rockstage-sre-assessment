@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-configmap
+data:
+  db-init.sh: |
+    # create database, user and grant for client01
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE DATABASE IF NOT EXISTS db_client01;"
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE USER 'user_db_client01'@'%' IDENTIFIED BY '${PASS_DB_CLIENT01}';"
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "GRANT ALL ON db_client01.* TO 'user_db_client01'@'%';"
+
+    # create database, user and grant for client02
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE DATABASE IF NOT EXISTS db_client02;"
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE USER 'user_db_client02'@'%' IDENTIFIED BY '${PASS_DB_CLIENT02}';"
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "GRANT ALL ON db_client02.* TO 'user_db_client02'@'%';"
+
+    # create database, user and grant for client01
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE DATABASE IF NOT EXISTS db_client03;"
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE USER 'user_db_client03'@'%' IDENTIFIED BY '${PASS_DB_CLIENT03}';"
+    mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "GRANT ALL ON db_client03.* TO 'user_db_client03'@'%';"
+    

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: wordpress
+  name: wordpress-svc-client02
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32002
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: wp-client02-deployment
+  type: NodePort

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wp-client03-deployment
+  name: wp-client03-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wp-client03-deployment
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: wp-client03-deployment
+    spec:
+      containers:
+      - image: wordpress:php8.0-apache
+        name: wordpress
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: wordpress-mysql
+        - name: WORDPRESS_DB_NAME
+          value: db_client03
+        - name: WORDPRESS_DB_USER
+          value: user_db_client03
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-client03-pass
+              key: passwordclient03
+        ports:
+        - containerPort: 80
+          name: wordpress
+        volumeMounts:
+        - name: wp-client03-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: wp-client03-persistent-storage
+        persistentVolumeClaim:
+          claimName: wp-client03-pvc
