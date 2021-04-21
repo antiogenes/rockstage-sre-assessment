@@ -99,6 +99,19 @@ deployment.apps/phpmyadmin-deployment created
 service/phpmyadmin created
 ```
 
+### Each wordpress and phpmyadmin service can be accessed through the node's IP and its respective port manually configured in the service manifest. 
+
+```bash
+root@master:/home/antiogenes/rock# kubectl get service
+NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes               ClusterIP   10.96.0.1        <none>        443/TCP        18d
+phpmyadmin               NodePort    10.101.177.190   <none>        80:32101/TCP   33m
+wordpress-mysql          ClusterIP   None             <none>        3306/TCP       36m
+wordpress-svc-client01   NodePort    10.107.169.164   <none>        80:32001/TCP   41m
+wordpress-svc-client02   NodePort    10.97.213.60     <none>        80:32002/TCP   41m
+wordpress-svc-client03   NodePort    10.106.5.114     <none>        80:32003/TCP   40m
+```
+
 - Set Prometheus + Grafana monitoring for the MySQL service (Bonus task - not required)
 
 ## Considerations
