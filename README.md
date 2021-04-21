@@ -16,7 +16,7 @@ Here's an overview of what a WordPress website Deployment at Rock Stage looks li
 
 ![Alt ou título da imagem](./clusterandnfs.png)
 
-### Before creating the manifest files of the deployment, service and persistent volumes of the applications and database, I defined the credentials to be used in mysql for the root user and users of the databases to be used for each wordpress deployment, then I converted passwords to base64 and created the manifests for each secret in the secrets directory.
+### Before creating the manifest files of the deployment, service and persistent volumes of the applications and database, I defined the credentials to be used in mysql for the root user and users of the databases to be used for each wordpress deployment, then I converted passwords to base64 and created the manifests for each secret in a directory called secrets.
 
 ```bash
 root@master:/home/antiogenes/rock# echo -n 'LobsterPassRoot' | base64
