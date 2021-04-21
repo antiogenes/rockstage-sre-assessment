@@ -76,7 +76,7 @@ service/wordpress-svc-client03 created
     - You can use whatever way you like to set the MySQL database/user/password to be used on wordpress-container
   - Use whatever way you like to populate the MySQL instance (you can do it with a custom wordpress image on wordpress-container if you like)
 
-## Was created a simple deployment of mysql where the difference is a shell script to create the bases, users and passwords in mysql, script mounted through configmap in the /docker-entrypoint-initdb.d directory of the mysql container where it is executed at startup, the users passwords passed by environment variables created in secret format at the beginning of this assessment.
+### Was created a simple deployment of mysql where the difference is a shell script to create the bases, users and passwords in mysql, script mounted through configmap in the /docker-entrypoint-initdb.d directory of the mysql container where it is executed at startup, the users passwords passed by environment variables created in secret format at the beginning of this assessment.
 
 ```bash
 root@master:/home/antiogenes/rock# kubectl create -f mysql/
@@ -91,7 +91,7 @@ service/wordpress-mysql created
   - Every site "owner" should be able to access PHPMyAdmin
   - Use the strategy you want (use your imagination)
 
-## The deployment of phpmyadmin was created, it connects to the mysql database and users can access using the credentials of their own database on mysql.
+### The deployment of phpmyadmin was created, it connects to the mysql database and users can access using the credentials of their own database on mysql.
 
 ```bash
 root@master:/home/antiogenes/rock# kubectl create -f phpmyadmin/
@@ -113,6 +113,8 @@ wordpress-svc-client03   NodePort    10.106.5.114     <none>        80:32003/TCP
 ```
 
 - Set Prometheus + Grafana monitoring for the MySQL service (Bonus task - not required)
+
+### This task will be for when I am hired ;) 
 
 ## Considerations
 
