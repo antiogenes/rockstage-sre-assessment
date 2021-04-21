@@ -48,7 +48,7 @@ mysql-root-pass          Opaque                                1      12s
   - you don't need to follow the architecture presented above - 1 container per WordPress deployment is fine
   - use whatever ports you like (they can be set manually)
 
-### I considered each wordpress deployment as a client and created 3 directories containing the necessary manifests for each one, each wordpress pod connects to the database with its own credentials created during the deployment of mysql.
+### I considered each wordpress deployment as a blog of a rock client and created 3 directories containing the necessary manifests for each one, each wordpress pod connects to the database with its own credentials created during the deployment of mysql.
 
 ```bash
 root@master:/home/antiogenes/rock# kubectl create -f client01/
